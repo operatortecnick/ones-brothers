@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=News Reporter Tray
+Comment=Notícias do dia na bandeja do sistema
+Exec=/usr/bin/python3 /home/caiofo/news-reporter-bot/news_tray.py
+Icon=/home/caiofo/news-reporter-bot/news-icon.svg
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+StartupNotify=false

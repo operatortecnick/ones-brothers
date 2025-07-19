@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=📰 Notícias do Dia
+Comment=Clique para ouvir as notícias de hoje!
+Exec=/home/caiofo/news-reporter-bot/news_launcher.sh
+Icon=/home/caiofo/news-reporter-bot/news-icon.svg
+Terminal=true
+Categories=AudioVideo;News;
+Keywords=news;notícias;áudio;podcast;

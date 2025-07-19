@@ -1,0 +1,7 @@
+requests
+beautifulsoup4
+openai
+elevenlabs
+python-dotenv
+feedparser
+pydub

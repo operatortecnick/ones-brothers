@@ -1,0 +1,22 @@
+# Ambiente
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Outputs
+news_output/
+*.mp3
+*.json
+news_cache.json
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
