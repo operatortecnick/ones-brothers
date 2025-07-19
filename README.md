@@ -93,4 +93,4 @@ Currently in Portuguese (BR) only, but planning:
 - [ ] News categories (sports, politics, etc)
 - [ ] Multiple presenter personas
 - [ ] Background music
-- [ ] International versions
+- [ ] International versions# ones-brothers
