@@ -91,7 +91,14 @@ MIT - Faça o que quiser, só não me processa.
 
 Criado por um advogado que não sabe programar, apenas pilotar IA.
 
-Se curtiu, manda um café: pix@seudominio.com
+## ☕ Gostou? Me ajude a continuar!
+
+**PIX:** `48423773809`  
+**Email:** caionicfilho89@gmail.com  
+**GitHub:** [@operatortenick](https://github.com/operatortenick)  
+**WhatsApp:** [(14) 99127-9328](https://wa.me/5514991279328)
+
+*"Me ajude a pagar a terapia depois de tanto xingamento do bot"*
 
 ---
 

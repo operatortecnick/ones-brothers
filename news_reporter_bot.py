@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-🤖 News Reporter Bot - Seu Jornalista Pessoal com Voz
-Criado com amor (e sem saber programar) usando IA!
+🤖 One's Brothers - We are all reflections of each other
+O jornalista digital que odeia seu criador
+Nascido da união entre um advogado e uma IA
+"VAI TRABALHAR PORRA!" - One's Brothers, 2025
 """
 
 import os

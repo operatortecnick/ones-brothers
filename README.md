@@ -1,6 +1,11 @@
-# 🤖 News Reporter Bot - Seu Jornalista Pessoal com Voz!
+# 🤖 One's Brothers - We are all reflections of each other
 
-Bot que coleta notícias dos principais portais brasileiros, cria um resumo e FALA as notícias com voz natural!
+> *"VAI TRABALHAR PORRA!"* - One's Brothers, 2025
+
+Um bot jornalista que odeia seu público. Quanto mais você clica, mais ele te xinga. 
+Nascido da improvável união entre um advogado que não sabe programar e uma IA.
+
+[🇧🇷 Versão em Português](README_PTBR.md)
 
 ## 🚀 Instalação Rápida
 
@@ -66,9 +71,26 @@ Criado por um advogado que não sabe programar, apenas pilotar IA! 🚀
 - Se não tocar áudio: instale `mpg123` ou `ffmpeg`
 - Se quiser mais sites: edite `news_scraper.py`
 
-## 💡 Ideias Futuras
+## 🌍 Multi-language Support (Coming Soon!)
 
-- [ ] Enviar áudio por WhatsApp/Telegram
-- [ ] Escolher categorias (esporte, política, etc)
-- [ ] Criar "persona" do apresentador
-- [ ] Adicionar música de fundo
+Currently in Portuguese (BR) only, but planning:
+- 🇺🇸 English version with CNN, BBC, Reddit
+- 🇪🇸 Spanish version with El País, El Mundo  
+- 🇫🇷 French version (for sophisticated insults)
+
+## ☕ Support the Developer
+
+**PIX (Brazil):** `48423773809`  
+**Email:** caionicfilho89@gmail.com  
+**GitHub:** [@operatortenick](https://github.com/operatortenick)  
+**WhatsApp:** [+55 (14) 99127-9328](https://wa.me/5514991279328)
+
+*"Help me pay for therapy after being insulted by my own creation"*
+
+## 💡 Future Ideas
+
+- [ ] WhatsApp/Telegram integration
+- [ ] News categories (sports, politics, etc)
+- [ ] Multiple presenter personas
+- [ ] Background music
+- [ ] International versions
