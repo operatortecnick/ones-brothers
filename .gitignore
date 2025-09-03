@@ -20,3 +20,7 @@ news_cache.json
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Testing artifacts
+*_mock.py
+test_*.mp3
