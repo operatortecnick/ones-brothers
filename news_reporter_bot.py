@@ -181,9 +181,10 @@ def main():
         print("2. Agendar execução diária")
         print("3. Testar componentes")
         print("4. Configurar voz")
-        print("5. Sair")
+        print("5. Abrir Painel de APIs de IA")
+        print("6. Sair")
         
-        choice = input("\nEscolha (1-5): ")
+        choice = input("\nEscolha (1-6): ")
         
         if choice == '1':
             bot.run_daily_report()
@@ -198,6 +199,17 @@ def main():
             bot.voice_name = voice
             print(f"✅ Voz configurada: {voice}")
         elif choice == '5':
+            print("\n🚀 Iniciando Painel de APIs de IA...")
+            print("📱 Acesse: http://localhost:5000")
+            print("⚠️ Use Ctrl+C para voltar ao menu principal")
+            try:
+                from api_panel import run_panel
+                run_panel()
+            except KeyboardInterrupt:
+                print("\n🔙 Voltando ao menu principal...")
+            except ImportError:
+                print("❌ Erro: Módulo api_panel não encontrado!")
+        elif choice == '6':
             print("\n👋 Até logo!")
             break
         else:
