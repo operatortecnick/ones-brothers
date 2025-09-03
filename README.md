@@ -7,13 +7,50 @@ Nascido da improvável união entre um advogado que não sabe programar e uma IA
 
 [🇧🇷 Versão em Português](README_PTBR.md)
 
+## 🤖 AI API Management Panel
+
+**NOVO!** Painel web para gerenciar todas as APIs de IA disponíveis:
+
+### Como acessar:
+```bash
+# Opção 1: Pelo menu principal do bot
+python news_reporter_bot.py
+# Escolha opção 5: "Abrir Painel de APIs de IA"
+
+# Opção 2: Diretamente
+python start_api_panel.py
+
+# Opção 3: Servidor dedicado
+python api_panel.py
+```
+
+### Funcionalidades:
+- 📋 **Catálogo de APIs**: Veja todas as APIs de IA disponíveis
+- 🔗 **Links diretos**: Acesse facilmente os sites para criar contas
+- ⚙️ **Guias de configuração**: Instruções passo-a-passo 
+- 📊 **Status em tempo real**: Veja quais APIs estão configuradas
+- 💡 **Dicas e troubleshooting**: Solução de problemas comuns
+
+### APIs incluídas:
+- **OpenAI** - GPT-4, DALL-E, Whisper (💰 $5 grátis)
+- **ElevenLabs** - Text-to-speech realista (💰 10k chars/mês grátis)
+- **Anthropic** - Claude AI para análise (💰 Pago)
+- **Google AI** - Gemini multimodal (💰 Tier generoso)
+- **Hugging Face** - Modelos open-source (🆓 Gratuito)
+- **Replicate** - Stable Diffusion, LLaMA (💰 $10 grátis)
+- **Cohere** - NLP empresarial (💰 Tier gratuito)
+- **Stability AI** - Geração de imagens (💰 Pago)
+
 ## 🚀 Instalação Rápida
 
 ```bash
 # 1. Instalar dependências
 pip install -r requirements.txt
 
-# 2. (Opcional) Configurar APIs
+# 2. (Opcional) Configurar APIs - AGORA MAIS FÁCIL!
+# Use o novo painel web para descobrir e configurar APIs
+python start_api_panel.py
+# OU configure manualmente:
 cp .env.example .env
 # Editar .env com suas chaves
 

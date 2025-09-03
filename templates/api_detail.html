@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}{{ api.name }} - Detalhes da API{% endblock %}
+
+{% block content %}
+<!-- API Header -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header {{ 'bg-success' if api.integration_status == 'Configurada' else 'bg-primary' }} text-white">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ api.logo_url }}" alt="{{ api.name }}" width="40" height="40" class="me-3" style="border-radius: 8px;">
+                            <div>
+                                <h2 class="mb-0">{{ api.name }}</h2>
+                                <small class="opacity-75">{{ api.main_use }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge {{ 'bg-light text-success' if api.integration_status == 'Configurada' else 'bg-warning text-dark' }} fs-6">
+                            <i class="fas {{ 'fa-check-circle' if api.integration_status == 'Configurada' else 'fa-exclamation-triangle' }} me-1"></i>
+                            {{ api.integration_status }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="row">
+    <!-- Left Column - API Info -->
+    <div class="col-lg-8">
+        <!-- Description -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Descrição
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">{{ api.description }}</p>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-star me-2"></i>
+                    Principais Funcionalidades
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for feature in api.features %}
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                            <span>{{ feature }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Integration Guide -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-wrench me-2"></i>
+                    Como Integrar
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if api.integration_status == 'Configurada' %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <strong>Parabéns!</strong> Esta API já está configurada e pronta para uso.
+                </div>
+                {% else %}
+                <ol class="list-unstyled">
+                    <li class="mb-3">
+                        <div class="d-flex align-items-start">
+                            <span class="badge bg-primary me-3">1</span>
+                            <div>
+                                <strong>Crie sua conta</strong><br>
+                                <small class="text-muted">Acesse {{ api.name }} e registre-se gratuitamente</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex align-items-start">
+                            <span class="badge bg-primary me-3">2</span>
+                            <div>
+                                <strong>Gere sua API Key</strong><br>
+                                <small class="text-muted">No painel de controle, crie uma nova chave de API</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex align-items-start">
+                            <span class="badge bg-primary me-3">3</span>
+                            <div>
+                                <strong>Configure no bot</strong><br>
+                                <small class="text-muted">Adicione no arquivo .env:</small>
+                                <div class="mt-2">
+                                    <code class="bg-light p-2 rounded d-block">{{ api.api_key_name }}=sua_chave_aqui</code>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-start">
+                            <span class="badge bg-primary me-3">4</span>
+                            <div>
+                                <strong>Reinicie o bot</strong><br>
+                                <small class="text-muted">Pare e reinicie o News Reporter Bot para aplicar as mudanças</small>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column - Actions & Info -->
+    <div class="col-lg-4">
+        <!-- Quick Actions -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-rocket me-2"></i>
+                    Ações Rápidas
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    {% if api.integration_status != 'Configurada' %}
+                    <a href="{{ api.signup_url }}" target="_blank" class="btn btn-success">
+                        <i class="fas fa-user-plus me-2"></i>
+                        Criar Conta
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{{ api.website }}" target="_blank" class="btn btn-outline-primary">
+                        <i class="fas fa-globe me-2"></i>
+                        Visitar Site
+                    </a>
+                    
+                    <a href="{{ api.docs_url }}" target="_blank" class="btn btn-outline-info">
+                        <i class="fas fa-book me-2"></i>
+                        Documentação
+                    </a>
+                    
+                    <a href="{{ api.pricing_url }}" target="_blank" class="btn btn-outline-warning">
+                        <i class="fas fa-dollar-sign me-2"></i>
+                        Ver Preços
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Info -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Informações
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <small class="text-muted d-block">Tier Gratuito</small>
+                    <strong class="{{ 'text-success' if api.free_tier != 'Não - Pago desde o início' else 'text-warning' }}">
+                        {{ api.free_tier }}
+                    </strong>
+                </div>
+                
+                <div class="mb-3">
+                    <small class="text-muted d-block">Uso Principal</small>
+                    <strong>{{ api.main_use }}</strong>
+                </div>
+                
+                <div class="mb-3">
+                    <small class="text-muted d-block">Variável de Ambiente</small>
+                    <code class="small">{{ api.api_key_name }}</code>
+                </div>
+                
+                <div>
+                    <small class="text-muted d-block">Status da Integração</small>
+                    <span class="badge {{ 'bg-success' if api.integration_status == 'Configurada' else 'bg-warning' }}">
+                        {{ api.integration_status }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tip Card -->
+        <div class="card border-info">
+            <div class="card-header bg-info text-white">
+                <h6 class="mb-0">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    Dica
+                </h6>
+            </div>
+            <div class="card-body">
+                <small>
+                    {% if api.free_tier != 'Não - Pago desde o início' %}
+                    Esta API oferece um tier gratuito! Você pode começar a usar sem custos iniciais.
+                    {% else %}
+                    Esta é uma API paga, mas geralmente oferece qualidade superior. Verifique os preços antes de se registrar.
+                    {% endif %}
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Back Button -->
+<div class="row mt-4">
+    <div class="col-12">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i>
+            Voltar ao Painel
+        </a>
+    </div>
+</div>
+{% endblock %}

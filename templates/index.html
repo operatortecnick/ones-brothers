@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Painel de APIs de IA - One's Brothers{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="jumbotron bg-gradient text-white p-5 rounded">
+            <h1 class="display-4">
+                <i class="fas fa-brain me-3"></i>
+                Painel de APIs de Inteligência Artificial
+            </h1>
+            <p class="lead">
+                Gerencie todas as APIs de IA disponíveis em um só lugar. 
+                Descubra novos serviços, configure integrações e potencialize seu bot!
+            </p>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body text-center">
+                            <i class="fas fa-list-ul fa-2x mb-2"></i>
+                            <h5>{{ stats.total }}</h5>
+                            <small>APIs Disponíveis</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body text-center">
+                            <i class="fas fa-check-circle fa-2x mb-2"></i>
+                            <h5>{{ stats.configured }}</h5>
+                            <small>Configuradas</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body text-center">
+                            <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                            <h5>{{ stats.unconfigured }}</h5>
+                            <small>Pendentes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Configuradas -->
+{% if configured %}
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-success mb-4">
+            <i class="fas fa-check-circle me-2"></i>
+            APIs Configuradas
+        </h2>
+        <div class="row">
+            {% for api_id, api in configured.items() %}
+            <div class="col-lg-6 col-xl-4 mb-4">
+                <div class="card h-100 border-success">
+                    <div class="card-header bg-success text-white d-flex align-items-center">
+                        <img src="{{ api.logo_url }}" alt="{{ api.name }}" width="24" height="24" class="me-2" style="border-radius: 4px;">
+                        <strong>{{ api.name }}</strong>
+                        <span class="badge bg-light text-success ms-auto">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ api.description }}</p>
+                        <div class="mb-3">
+                            <small class="text-muted">
+                                <i class="fas fa-bullseye me-1"></i>
+                                <strong>Uso principal:</strong> {{ api.main_use }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('api_detail', api_id=api_id) }}" class="btn btn-outline-success">
+                                <i class="fas fa-info-circle me-1"></i>Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Não Configuradas -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-primary mb-4">
+            <i class="fas fa-plus-circle me-2"></i>
+            APIs Disponíveis para Integração
+        </h2>
+        <div class="row">
+            {% for api_id, api in unconfigured.items() %}
+            <div class="col-lg-6 col-xl-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white d-flex align-items-center">
+                        <img src="{{ api.logo_url }}" alt="{{ api.name }}" width="24" height="24" class="me-2" style="border-radius: 4px;">
+                        <strong>{{ api.name }}</strong>
+                        {% if api.free_tier != 'Não - Pago desde o início' %}
+                        <span class="badge bg-success ms-auto">
+                            <i class="fas fa-gift"></i> GRÁTIS
+                        </span>
+                        {% else %}
+                        <span class="badge bg-warning ms-auto">
+                            <i class="fas fa-dollar-sign"></i> PAGO
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ api.description }}</p>
+                        <div class="mb-3">
+                            <small class="text-muted">
+                                <i class="fas fa-bullseye me-1"></i>
+                                <strong>Uso principal:</strong> {{ api.main_use }}
+                            </small>
+                        </div>
+                        <div class="mb-3">
+                            <small class="text-muted">
+                                <i class="fas fa-gift me-1"></i>
+                                <strong>Tier gratuito:</strong> {{ api.free_tier }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <div class="btn-group">
+                                <a href="{{ api.signup_url }}" target="_blank" class="btn btn-success">
+                                    <i class="fas fa-user-plus me-1"></i>Criar Conta
+                                </a>
+                                <a href="{{ url_for('api_detail', api_id=api_id) }}" class="btn btn-outline-primary">
+                                    <i class="fas fa-info-circle me-1"></i>Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="alert alert-info">
+            <h4 class="alert-heading">
+                <i class="fas fa-lightbulb me-2"></i>
+                Como usar este painel?
+            </h4>
+            <hr>
+            <p class="mb-2">
+                <strong>1. Escolha uma API:</strong> Explore as opções disponíveis e escolha a que melhor atende suas necessidades.
+            </p>
+            <p class="mb-2">
+                <strong>2. Crie sua conta:</strong> Clique em "Criar Conta" para se registrar no serviço.
+            </p>
+            <p class="mb-2">
+                <strong>3. Configure:</strong> Adicione sua API key no arquivo .env e reinicie o bot.
+            </p>
+            <p class="mb-0">
+                <strong>4. Aproveite:</strong> Use as novas funcionalidades no seu bot One's Brothers!
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Atualizar status das APIs em tempo real
+function updateAPIStatus() {
+    fetch('/api/status')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Status das APIs atualizado:', data);
+        })
+        .catch(error => console.log('Erro ao atualizar status:', error));
+}
+
+// Atualizar a cada 30 segundos
+setInterval(updateAPIStatus, 30000);
+</script>
+{% endblock %}

@@ -5,3 +5,5 @@ elevenlabs
 python-dotenv
 feedparser
 pydub
+flask
+schedule

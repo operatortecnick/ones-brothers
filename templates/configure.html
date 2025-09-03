@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block title %}Configurar APIs - One's Brothers{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-cog me-2"></i>
+            Configurar APIs
+        </h1>
+    </div>
+</div>
+
+<!-- Configuration Guide -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-question-circle me-2"></i>
+                    Como Configurar suas APIs
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Para configurar suas APIs no One's Brothers, siga estes passos:</p>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-file-alt text-primary me-2"></i>1. Edite o arquivo .env</h6>
+                        <p class="small text-muted">
+                            Localize o arquivo <code>.env</code> na pasta do projeto. 
+                            Se não existir, copie o arquivo <code>.env.example</code> e renomeie para <code>.env</code>.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6><i class="fas fa-key text-warning me-2"></i>2. Adicione suas chaves</h6>
+                        <p class="small text-muted">
+                            Adicione suas API keys seguindo o formato mostrado abaixo.
+                            Substitua "sua_chave_aqui" pela sua chave real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- .env Configuration -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-file-code me-2"></i>
+                    Exemplo de Configuração (.env)
+                </h5>
+            </div>
+            <div class="card-body">
+                <pre class="bg-dark text-light p-3 rounded"><code># APIs principais já suportadas pelo bot
+OPENAI_API_KEY=sua_chave_openai_aqui
+ELEVENLABS_API_KEY=sua_chave_elevenlabs_aqui
+
+# APIs adicionais para futuras integrações
+ANTHROPIC_API_KEY=sua_chave_anthropic_aqui
+GOOGLE_API_KEY=sua_chave_google_aqui
+HUGGINGFACE_API_KEY=sua_chave_huggingface_aqui
+REPLICATE_API_TOKEN=sua_chave_replicate_aqui
+COHERE_API_KEY=sua_chave_cohere_aqui
+STABILITY_API_KEY=sua_chave_stability_aqui
+
+# Configurações do bot
+VOICE_NAME=callum</code></pre>
+                <div class="mt-3">
+                    <button class="btn btn-outline-primary btn-sm" onclick="copyToClipboard()">
+                        <i class="fas fa-copy me-1"></i>
+                        Copiar Exemplo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Current Configuration Status -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Status Atual das Configurações
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>API</th>
+                                <th>Variável</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="api-status-table">
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <i class="fas fa-spinner fa-spin me-2"></i>
+                                    Carregando status...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Troubleshooting -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Solução de Problemas
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="troubleshootingAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                API não está sendo reconhecida
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#troubleshootingAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Verifique se o arquivo <code>.env</code> está na pasta raiz do projeto</li>
+                                    <li>Certifique-se de que não há espaços antes ou depois do sinal de igual</li>
+                                    <li>Reinicie completamente o bot após adicionar novas chaves</li>
+                                    <li>Verifique se a chave da API está correta e ativa</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                Erro de autenticação da API
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#troubleshootingAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Confirme se a API key está correta no site do provedor</li>
+                                    <li>Verifique se sua conta tem créditos suficientes</li>
+                                    <li>Alguns provedores requerem ativação manual da API</li>
+                                    <li>Verifique se há limitações de região na sua conta</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                Bot não está usando a nova API
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#troubleshootingAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Reinicie completamente o processo do bot</li>
+                                    <li>Verifique se não há arquivos <code>.env</code> duplicados</li>
+                                    <li>Confirme se o bot está sendo executado da pasta correta</li>
+                                    <li>Algumas APIs podem precisar de configuração adicional no código</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function copyToClipboard() {
+    const text = `# APIs principais já suportadas pelo bot
+OPENAI_API_KEY=sua_chave_openai_aqui
+ELEVENLABS_API_KEY=sua_chave_elevenlabs_aqui
+
+# APIs adicionais para futuras integrações
+ANTHROPIC_API_KEY=sua_chave_anthropic_aqui
+GOOGLE_API_KEY=sua_chave_google_aqui
+HUGGINGFACE_API_KEY=sua_chave_huggingface_aqui
+REPLICATE_API_TOKEN=sua_chave_replicate_aqui
+COHERE_API_KEY=sua_chave_cohere_aqui
+STABILITY_API_KEY=sua_chave_stability_aqui
+
+# Configurações do bot
+VOICE_NAME=callum`;
+    
+    navigator.clipboard.writeText(text).then(function() {
+        // Mostrar feedback visual
+        const btn = event.target;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check me-1"></i>Copiado!';
+        btn.classList.add('btn-success');
+        btn.classList.remove('btn-outline-primary');
+        
+        setTimeout(function() {
+            btn.innerHTML = originalText;
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-primary');
+        }, 2000);
+    });
+}
+
+function loadAPIStatus() {
+    fetch('/api/status')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.getElementById('api-status-table');
+            tbody.innerHTML = '';
+            
+            // Lista de APIs com suas informações
+            const apis = {
+                'openai': { name: 'OpenAI', var: 'OPENAI_API_KEY', url: 'https://platform.openai.com' },
+                'elevenlabs': { name: 'ElevenLabs', var: 'ELEVENLABS_API_KEY', url: 'https://elevenlabs.io' },
+                'anthropic': { name: 'Anthropic', var: 'ANTHROPIC_API_KEY', url: 'https://console.anthropic.com' },
+                'google': { name: 'Google AI', var: 'GOOGLE_API_KEY', url: 'https://ai.google.dev' },
+                'huggingface': { name: 'Hugging Face', var: 'HUGGINGFACE_API_KEY', url: 'https://huggingface.co' },
+                'replicate': { name: 'Replicate', var: 'REPLICATE_API_TOKEN', url: 'https://replicate.com' },
+                'cohere': { name: 'Cohere', var: 'COHERE_API_KEY', url: 'https://cohere.ai' },
+                'stability': { name: 'Stability AI', var: 'STABILITY_API_KEY', url: 'https://platform.stability.ai' }
+            };
+            
+            Object.keys(apis).forEach(apiId => {
+                const api = apis[apiId];
+                const status = data[apiId] || 'Não configurada';
+                const isConfigured = status === 'Configurada';
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <strong>${api.name}</strong>
+                    </td>
+                    <td>
+                        <code class="small">${api.var}</code>
+                    </td>
+                    <td>
+                        <span class="badge ${isConfigured ? 'bg-success' : 'bg-warning'}">
+                            <i class="fas ${isConfigured ? 'fa-check' : 'fa-exclamation-triangle'} me-1"></i>
+                            ${status}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="${api.url}" target="_blank" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-external-link-alt me-1"></i>
+                            Acessar
+                        </a>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar status:', error);
+            const tbody = document.getElementById('api-status-table');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center text-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Erro ao carregar status das APIs
+                    </td>
+                </tr>
+            `;
+        });
+}
+
+// Carregar status ao carregar a página
+document.addEventListener('DOMContentLoaded', loadAPIStatus);
+
+// Atualizar status a cada 30 segundos
+setInterval(loadAPIStatus, 30000);
+</script>
+{% endblock %}
